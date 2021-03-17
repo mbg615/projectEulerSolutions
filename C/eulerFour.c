@@ -4,14 +4,15 @@
 int numOfDigits(int number);
 int digit(int number);
 int digitRemover(int number, int subtractor);
+int comparison(int number, int comparator);
 
 int main(void) {
-    int i, j, k, product, digitsInNum, count = 0, palindromeFive, palindromeSix, largest, compare;
+    int i, j, k, product, digitsInNum, count = 0, palindromeFive, palindromeSix, largest, compare, palindrome;
     for (i = 999; i >= 100; i--) {
         for (j = 999; j >= 100; j--) {
             product = i * j;
             digitsInNum = numOfDigits(product);
-            int digitOne, digitTwo, digitThree, digitFour, digitFive, digitSix, newProduct, previousProduct = 0;
+            int digitOne, digitTwo, digitThree, digitFour, digitFive, digitSix, newProduct, previousProduct = 0, fiveDigitPalindrome = 0, sixDigitPalindrome = 0, fiveDigitStore = 0, sixDigitStore = 0, compareSixDigit, compareFiveDigit;
             switch (digitsInNum) {
                 case 5:
                     // Digit five finder and prep for finding digit four
@@ -36,7 +37,8 @@ int main(void) {
                     // Test if the number is a palindrome
                     if (digitFive == digitOne) {
                         if (digitFour == digitTwo) {
-                            
+                            fiveDigitPalindrome = product;
+                            compareFiveDigit = comparison(fiveDigitPalindrome, fiveDigitStore);
                         }
                     }
                     
@@ -70,15 +72,23 @@ int main(void) {
                     if (digitSix == digitOne) {
                         if (digitFive == digitTwo) {
                             if (digitFour == digitThree) {
-
+                                sixDigitPalindrome = product;
+                                compareSixDigit = comparison(sixDigitPalindrome, sixDigitStore);
                             }
                         }
                     }
                     // End the switch
                     break;
             }
+            if (sixDigitPalindrome >= fiveDigitPalindrome) {
+                palindrome = sixDigitPalindrome;
+            }
+            if (fiveDigitPalindrome >= sixDigitPalindrome) {
+                palindrome = fiveDigitPalindrome;
+            }
         }
     }
+    printf("test: %d\n", palindrome);
 }
 int numOfDigits(int number) {
     int count = 0;
@@ -95,5 +105,12 @@ int digit(int number) {
 int digitRemover(int number, int subtractor) {
     number -= subtractor;
     number /= 10;
+    return number;
+}
+int comparison(int number, int comparator) {
+    if (number <= comparator) {
+        number = comparator;
+        return number;
+    }
     return number;
 }
