@@ -16,7 +16,7 @@ int main(void) {
                 sumTotal = i + j + sqrt(sum);
                 if (sumTotal == 1000) {
                     prodTotal = i * j * sqrt(sum);
-                    printf("The product of %d %d and %d is %d when %d and %d is A and B from the pythagorean theorm that has a hypotenuse of 1000\n", i, j, sumTotal, prodTotal, i, j);
+                    printf("The product of %d %d and %d is %d when %d and %d is A and B from a pythagorean tripple that has a hypotenuse of 1000\n", i, j, sumTotal, prodTotal, i, j);
                     exit(1);
                 }
             }
