@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <math.h>
 
-int testPrime(int number);
+int isPrime(int number);
 int main(void) {
     int counter = 0, numberToTest = 1, isPrime;
     while(counter < 10001) {
@@ -12,11 +13,13 @@ int main(void) {
     }
     printf("%d is the 10001st prime number\n", numberToTest);
 }
-int testPrime(int number) {
-    for(int i = 2; i <= number/2; i++) {
-        if(number % i == 0) q{
-            return 0;
-        }
+
+int isPrime(int number) {
+    if (number > 2 && number % 2 == 0) return 0;
+    for (int i = 3; i < sqrt(number) + 1; i++) {
+        if (i % 2 == 0)
+        continue;
+        if (number % i == 0) return 0;
     }
     return 1;
 }
