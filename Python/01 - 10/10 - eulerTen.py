@@ -10,4 +10,3 @@ if __name__ == "__main__":
         if(isPrime(i)):
             sum += i
     print(sum)
-

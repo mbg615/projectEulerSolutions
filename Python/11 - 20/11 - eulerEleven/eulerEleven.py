@@ -1,8 +1,6 @@
 import numpy as np
-import os
 
-os.chdir('/Users/maddox/Desktop/eulerEleven/') # Path to eulerEleven folder
-matrix = np.loadtxt('eulerEleven.txt') # Looks for and reads the file 'eulerEleven.txt'
+matrix = np.loadtxt('matrix.txt') # Looks for and reads the file 'eulerEleven.txt'
 
 maxProd = 1
 for i in range(16):

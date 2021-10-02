@@ -2,63 +2,66 @@
 #include <string>
 #include <list>
 
-using namespace std;
-
 int main() {
-	extern string dataStr;
-	int start = 0, length = 13;
-	list<string> products;
-	// Loop through the strings and convert them to numbers
-	while (start <= dataStr.length() - length) {
-		unsigned long long testInt = 0;
-		unsigned long long customStrToInt(string stringToConv);
-		string testpart = dataStr.substr(start,length); // .substr(start,length)
-		testInt = customStrToInt(testpart);
-		cout << "Testing: " << testInt << endl;
-		exit(0);
+    long long largestProductOfNum(std::list<long long> list);
+    static const int strLength = 13;
+	extern std::string dataStr;
+    
+    int start = 0;
+    std::list<long long> validNumbers;
+
+	while (start <= dataStr.length() - strLength) {
+		std::string testPart = dataStr.substr(start, strLength);
+        
+        size_t found = testPart.find("0");
+        if (found == std::string::npos) {
+            long long testInt = std::stoull(testPart);
+            validNumbers.push_back(testInt);
+        }
+        
+        start++;
 	}
+    
+    long long solution = largestProductOfNum(validNumbers);
+    std::cout << solution << " is the largest product of 13 adjacent numbers in the 1000 digit number" << std::endl;
+    
+    exit(0);
 }
 
-unsigned long long customStrToInt(string stringToConv) {
-	string newstring, strDigit;
-	int strLength = stringToConv.length(), curentLoop = 0, digit = 0;
-	unsigned long long convertedStr = 0;
-	while (stringToConv.length() != curentLoop) {
-		strDigit = stringToConv.substr(curentLoop,1);
-		if (strDigit == "0") {
-			digit = 0;
-		}
-		if (strDigit == "1") {
-			digit = 1;
-		}
-		if (strDigit == "2") {
-			digit = 2;
-		}
-		if (strDigit == "3") {
-			digit = 3;
-		}
-		if (strDigit == "4") {
-			digit = 4;
-		}
-		if (strDigit == "5") {
-			digit = 5;
-		}
-		if (strDigit == "6") {
-			digit = 6;
-		}
-		if (strDigit == "7") {
-			digit = 7;
-		}
-		if (strDigit == "8") {
-			digit = 8;
-		}
-		if (strDigit == "9") {
-			digit = 9;
-		}
-		convertedStr *= 10;
-		convertedStr += digit;
-		digit = 0;
-		curentLoop++;
-	}
-	return convertedStr;
+long long largestProductOfNum(std::list<long long> list) {
+    std::list<long long> numProductNumbers;
+    
+    for (long long &i: list) {
+        long long productOfList(std::list<int> &list);
+        std::list<int> digitBreak(long long num);
+        
+        std::list<int> digitList;
+        long long numProduct;
+        
+        digitList = digitBreak(i);
+        numProduct = productOfList(digitList);
+        numProductNumbers.push_back(numProduct);
+    }
+    numProductNumbers.sort();
+
+    return numProductNumbers.back();
+}
+
+std::list<int> digitBreak(long long num) {
+    std::list<int> digitList;
+    int digit;
+    while(num >= 1) {
+        int digit = num % 10;
+        digitList.push_back(digit);
+        num /= 10;
+    }
+    return digitList;
+}
+
+long long productOfList(std::list<int> &list) {
+    long long listProd = 1;
+    for(int &i: list) {
+        listProd *= i;
+    }
+    return listProd;
 }
