@@ -14,7 +14,7 @@ int main() {
   while (checking) {
     testNumber++;
     std::cout << "testing " << testNumber << "\n";
-    if (divisors(testNumber) == 500 && isTriangular(testNumber) == 1) {
+    if (divisors(testNumber) > 500 && isTriangular(testNumber) == 1) {
       checking = false;
       std::cout << testNumber;
       std::exit(0);
@@ -23,7 +23,7 @@ int main() {
   std::cout << testNumber;
 }
 
-int divisors(int number) { // Not working and very slow
+int divisors(int number) {
   int divCounter = 0;
   for (int i = 1; i < number / 2; i++) {
     if (number % i == 0) {
@@ -33,7 +33,7 @@ int divisors(int number) { // Not working and very slow
   return divCounter;
 }
 
-bool isTriangular(int number) { // Not working
+bool isTriangular(int number) {
   bool isPerfectSquare(int number);
   if (isPerfectSquare(((8 * number) + 1)) == 1) return true;
   return false;
