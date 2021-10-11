@@ -5,7 +5,7 @@
 
 int main() {
   int divCounter = 0;
-  int testNumber = 76576470;
+  int testNumber = 0;
 
   int divisors(int number);
   bool isTriangular(int number);
@@ -13,7 +13,6 @@ int main() {
   bool checking = true;
   while (checking) {
     testNumber++;
-    std::cout << "testing " << testNumber << "\n";
     if (divisors(testNumber) > 500 && isTriangular(testNumber) == 1) {
       checking = false;
       std::cout << testNumber;
