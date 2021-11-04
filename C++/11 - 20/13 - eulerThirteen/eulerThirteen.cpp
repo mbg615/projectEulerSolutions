@@ -3,30 +3,78 @@
 #include <string>
 
 int main() {
+  std::string largeAddder(std::string addendOne, std::string addendTwo);
   extern std::string numbers[];
+  std::string sum;
 
   for(int i = 0; i <= 100; i++) {
-    std::cout << numbers[i] << "\n";
+    sum = largeAddder(sum, numbers[i]);
   }
+  std::string ans = sum.substr(0,10);
+  std::cout << ans;
 }
 
-std::string stringAddition(std::string numOne, std::string numTwo) {
-  int carry, digitOne, digitTwo, sum;
-  std::string strPartOne, strPartTwo, sumString;
-  if(numOne.length() != numTwo.length()) {
-    int lengthDiffrence = numOne.length() - numTwo.length();
-    if(lengthDiffrence < 0) {
-      std::string extra = numTwo.substr(0,std::abs(lengthDiffrence));
+std::string largeAddder(std::string addendOne, std::string addendTwo) {
+  int workingDigitOne, workingDigitTwo, workingSumInt = 0, carry = 0;
+  std::string workingCharOne, workingCharTwo, finalSum, workingSumChar;
+  bool carryFlag = false;
+
+  if (addendOne.length() != addendTwo.length()) {
+    // Set the numbers lengths equal
+    int stringLengthDiff = addendOne.length() - addendTwo.length();
+
+    if (stringLengthDiff < 0) {
+      for (int i = std::abs(stringLengthDiff); i > 0; i--) {
+        addendOne = "0" + addendOne;
+      }
+    }
+    else {
+      for (int i = stringLengthDiff; i > 0; i--) {
+        addendTwo = "0" + addendTwo;
+      }
     }
   }
-  for(int i = 0; i <= numOne.length(); i++) {
-    strPartOne = numOne.back();
-    strPartTwo = numTwo.back();
-    digitOne = std::stoi(strPartOne);
-    digitTwo = std::stoi(strPartTwo);
-    sum = digitOne + digitTwo;
-    if(sum < 9) {
-      carry = sum / 10;
+
+  if (addendOne.length() == addendTwo.length()) { // If the numers are the same length
+    // Allows the final carry digit to be added to the front
+    addendOne = "0" + addendOne;
+    addendTwo = "0" + addendTwo;
+
+    while (addendOne.length() > 0) {
+      // Get the last character in the number and delete it from the number
+      workingCharOne = addendOne.back();
+      addendOne.pop_back();
+      workingCharTwo = addendTwo.back();
+      addendTwo.pop_back();
+
+      // Convert last character to an integer
+      workingDigitOne = std::stoi(workingCharOne);
+      workingDigitTwo = std::stoi(workingCharTwo);
+
+      // Add working digits together with carry if necessary
+      if (carryFlag) {
+        workingSumInt = workingDigitOne + workingDigitTwo + 1;
+        carryFlag = false;
+      }
+      else {
+        workingSumInt = workingDigitOne + workingDigitTwo;
+      }
+
+      // If the sum is less than 9, add it to the number
+      if (workingSumInt < 10) {
+        workingSumChar = std::to_string(workingSumInt);
+        finalSum = workingSumChar + finalSum;
+      } else {
+        carryFlag = true;
+        workingSumChar = std::to_string(workingSumInt % 10);
+        finalSum = workingSumChar + finalSum;
+      }
     }
   }
+
+  // Removing leading zero
+  if (finalSum.at(0) == '0') {
+    finalSum.erase(0,1);
+  }
+  return finalSum;
 }

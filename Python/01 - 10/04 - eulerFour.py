@@ -1,8 +1,8 @@
-global fiveDigitPalindromes, sixDigitPalindromes
-fiveDigitPalindromes = []
-sixDigitPalindromes = []
+global five_digit_palindromes, six_digit_palindromes
+five_digit_palindromes = []
+six_digit_palindromes = []
 
-def numOfDigits(number): # Find the number of digits in a number
+def num_of_digits(number): # Find the number of digits in a number
     counter = 0
     while number != 0:
         subtractor = number % 10
@@ -15,76 +15,80 @@ def digit(number): # Find the last digit of a number
     number = number % 10
     return number
 
-def digitRemover(number, subtractor): # Remove the last digit of a number
+def digit_remover(number, subtractor): # Remove the last digit of a number
     number = number - subtractor
     number = number / 10
     return number
 
 def five(number): # Check if a 5 digit number is a palindrome
     # Find digit five and prep for digit four:
-    digitFive = digit(number)
-    newProduct = digitRemover(product, digitFive)
+    digit_five = digit(number)
+    new_product = digit_remover(product, digit_five)
 
     # Find digit four and prep for digit three:
-    digitFour = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitFour)
+    digit_four = digit(new_product)
+    new_product = digit_remover(new_product, digit_four)
 
     # Find digit three and prep for digit two:
-    digitThree = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitThree)
+    digit_three = digit(new_product)
+    new_product = digit_remover(new_product, digit_three)
 
     # Find digit two and prep for digit one:
-    digitTwo = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitTwo)
+    digit_two = digit(new_product)
+    new_product = digit_remover(new_product, digit_two)
 
     # Assigning digit one to last remaining digit:
-    digitOne = newProduct
+    digit_one = new_product
 
     # Test for palindromes
-    if (digitFive == digitOne):
-        if (digitFour == digitTwo):
-            fiveDigitPalindromes.append(product)
+    if (digit_five == digit_one):
+        if (digit_four == digit_two):
+            five_digit_palindromes.append(product)
 
 def six(number): # Check if a 6 digit number is a palindrome
     # Find digit six and prep for digit five:
-    digitSix = digit(number)
-    newProduct = digitRemover(product, digitSix)
-    
+    digit_six = digit(number)
+    new_product = digit_remover(product, digit_six)
+
     # Find digit five and prep for digit four:
-    digitFive = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitFive)
-    
+    digit_five = digit(new_product)
+    new_product = digit_remover(new_product, digit_five)
+
     # Find digit four and prep for digit three:
-    digitFour = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitFour)
+    digit_four = digit(new_product)
+    new_product = digit_remover(new_product, digit_four)
 
     # Find digit three and prep for digit two:
-    digitThree = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitThree)
+    digit_three = digit(new_product)
+    new_product = digit_remover(new_product, digit_three)
 
     # Find digit two and prep for digit one:
-    digitTwo = digit(newProduct)
-    newProduct = digitRemover(newProduct, digitTwo)
+    digit_two = digit(new_product)
+    new_product = digit_remover(new_product, digit_two)
 
     # Assigning digit one to last remaining digit:
-    digitOne = newProduct
+    digit_one = new_product
 
     # Test for palindromes
-    if (digitSix == digitOne):
-        if (digitFive == digitTwo):
-            if (digitFour == digitThree):
-                sixDigitPalindromes.append(product)
+    if (digit_six == digit_one):
+        if (digit_five == digit_two):
+            if (digit_four == digit_three):
+                six_digit_palindromes.append(product)
 
-for i in range(100, 999, 1): # loop through and multiply all 3-digit numbers
-    for j in range(100, 999, 1):
-        product = i * j
-        digitsInNum = numOfDigits(product)
+def main():
+    for i in range(100, 999, 1): # loop through and multiply all 3-digit numbers
+        for j in range(100, 999, 1):
+            product = i * j
+            digits_in_num = num_of_digits(product)
 
-        if digitsInNum == 5:
-            five(product)
-        if digitsInNum == 6:
-            six(product)
+            if digits_in_num == 5:
+                five(product)
+            if digits_in_num == 6:
+                six(product)
 
-palindromes = fiveDigitPalindromes + sixDigitPalindromes
-palindromes.sort()
-print("The largest palindrome made from the product of two 3-digit numbers is:", palindromes[-1])
+    palindromes = five_digit_palindromes + six_digit_palindromes
+    palindromes.sort()
+    print("The largest palindrome made from the product of two 3-digit numbers is:", palindromes[-1])
+
+if __name__ == "__main__":
+    main()
