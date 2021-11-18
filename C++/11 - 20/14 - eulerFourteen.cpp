@@ -1,33 +1,27 @@
 #include <iostream>
 
-int main() {
-  int collatzNumber = 1, collatzSequenceLength, collatzSequenceLengthHighest;
-  int collatzSequence(int seed);
-  while(collatzNumber < 1000000) {
-    // Do Collatz Conjecture
-    collatzSequenceLength = collatzSequence(collatzNumber);
-    if(collatzSequenceLength > collatzSequenceLengthHighest) {
-      collatzSequenceLengthHighest = collatzSequenceLength;
+int computeCollatz(long number) {
+  int count = 0;
+
+  while(number != 1) {
+    if(number % 2 == 0) {
+      number /= 2;
     }
-    std::cout << collatzNumber << " " << collatzSequenceLength << "\n";
-    collatzNumber++;
+    else {
+      number = 3*number + 1;
+    }
+    count++;
   }
-  std::cout << "The largest collatz number below 1 million is" << collatzNumber << "with a length of" << collatzSequenceLengthHighest << "\n";
+  return count;
 }
 
-int collatzSequence(int seed) {
-  int collatzStep = 0;
-  if(seed == 1) {
-    collatzStep = 1;
-  }
-  while(seed != 1) {
-    if(seed % 2 == 0) {
-      seed /= 2;
-    } else {
-      seed = seed * 3 + 1;
+int main() {
+  int maxLoops = 0, maxNum = 0;
+  for(int i = 1; i < 1000000; i++) {
+    if(computeCollatz(i) > maxLoops) {
+      maxLoops = computeCollatz(i);
+      maxNum = i;
     }
-    collatzStep++;
-    std::cout << " " << collatzStep;
   }
-  return collatzStep;
+std::cout << maxNum << std::endl;
 }

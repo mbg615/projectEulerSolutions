@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 int main() {
     for (int i = 1; i < 1000; i++) {
         for (int j = 1; j < 1000; j++) {
@@ -14,7 +12,7 @@ int main() {
             if (squareTest) {
                 int sumTotal = i + j + sqrt(sum);
                 if (sumTotal == 1000) {
-                    cout << i * j * sqrt(sum) << " Done!" << endl;
+                    std::cout << i * j * sqrt(sum) << " Done!" << std::endl;
                     return 0;
                 }
             }

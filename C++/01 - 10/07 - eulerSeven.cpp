@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cmath>
 
-using namespace std;
-
 int main() {
 	int isPrime(int number);
 	bool running = true;
@@ -13,7 +11,7 @@ int main() {
 		}
 		if (counter == 10001) {
 			running = false;
-			cout << num << " is the 10001 prime number.\n";
+			std::cout << num << " is the 10001 prime number.\n";
 		}
 		num++;
 	}

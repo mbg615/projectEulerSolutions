@@ -1,11 +1,9 @@
 #include <iostream>
 #include <list>
 
-using namespace std;
-
 int main() {
     int isPalindrome(int num);
-    list<int> palindromes;
+    std::list<int> palindromes;
     for (int i = 999; i >= 100; i--) {
         for (int j = 999; j >= 100; j--) {
             int revNumber = 0;
@@ -16,7 +14,7 @@ int main() {
         }
     }
     palindromes.sort();
-    cout << palindromes.back() << "is the largest palindrome made from the products of 2 three digit numbers";
+    std::cout << palindromes.back() << "is the largest palindrome made from the products of 2 three digit numbers";
     return 0;
 }
 

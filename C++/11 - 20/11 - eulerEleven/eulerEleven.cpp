@@ -1,17 +1,10 @@
-//
-//  eulerEleven.cpp
-//  
-//
-//  Created by Maddox on 9/20/21.
-//
-
 #include <iostream>
 #include <string>
 
 int main() {
     extern std::string str_matrix[20][20];
     int matrix[20][20];
-    
+
     // Convert matrix of strings to ints
     for (int column = 0; column <= 20; column++) {
         for (int row = 0; row <= 20; row++) {
@@ -19,7 +12,7 @@ int main() {
             matrix[column][row] = value;
         }
     }
-    
+
     /*
     // Check up and down
     for (int column = 0; column <= 20; column++) {
