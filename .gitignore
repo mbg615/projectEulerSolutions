@@ -1,6 +1,3 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,c++,python,jupyternotebooks
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,c++,python,jupyternotebooks
-
 ### C++ ###
 # Prerequisites
 *.d
@@ -35,19 +32,20 @@
 *.out
 *.app
 
-### JupyterNotebooks ###
-# gitignore template for Jupyter Notebooks
-# website: http://jupyter.org/
+### Linux ###
+*~
 
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
 
-# IPython
-profile_default/
-ipython_config.py
+# KDE directory preferences
+.directory
 
-# Remove previous ipynb_checkpoints
-#   git rm -r .ipynb_checkpoints/
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
 
 ### macOS ###
 # General
@@ -156,8 +154,11 @@ docs/_build/
 target/
 
 # Jupyter Notebook
+.ipynb_checkpoints
 
 # IPython
+profile_default/
+ipython_config.py
 
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
@@ -170,6 +171,13 @@ target/
 #   having no cross-platform support, pipenv may install dependencies that don't work, or not
 #   install all needed dependencies.
 #Pipfile.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
@@ -214,4 +222,9 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,c++,python,jupyternotebooks
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
